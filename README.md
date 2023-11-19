@@ -16,6 +16,6 @@ My primary goals of doing this challenge are to:
 * Cultivate a consistent learning habit and discipline
 
 ### Learnings
-_I started from day 15 because before that it was a beginner phase which is I already have knowledge of_
+_I started from day 15 because, before that, it was a beginner phase in which I already knew_
 
 **Day 17:** What is [Trivia API](https://opentdb.com/api_config.php) and how to use it.
