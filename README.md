@@ -17,10 +17,18 @@ My primary goals of doing this challenge are to:
 * Cultivate a consistent learning habit and discipline
 
 ### Learnings
-_I started from day 15 because before that it was a beginner phase which is I already have knowledge of_
+_I started from day 15 because before that it was a beginner phase which I already know_
 
 **Day 17:** What is [Trivia API](https://opentdb.com/api_config.php) and how to use it.
 
 **Day 18:** How to read modules documentation. And what are: _Turtle_ and _Colorgram_ modules.
 
 **Day 19:** How to use event listeners in Turtle Module.
+
+**Day 20:** Learned about the _time_ module and how to use _sleep()_ method. Learned more about the _Screen_ class, and
+how to use _update()_ method.
+
+### Reflection
+
+- Days 20 & 21 were by far the most enjoyable, learning how to create a _snake game_ is AWESOME. Couldn't imagine
+before this, it was possible to create it using the _turtle_ module.
