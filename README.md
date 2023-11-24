@@ -28,7 +28,11 @@ _I started from day 15 because before that it was a beginner phase which I alrea
 **Day 20:** Learned about the _time_ module and how to use _sleep()_ method. Learned more about the _Screen_ class, and
 how to use _update()_ method.
 
+**Day 21:** What is inheritance, and how to inherit another class.
+
+
 ### Reflection
 
-- Days 20 & 21 were by far the most enjoyable, learning how to create a _snake game_ is AWESOME. Couldn't imagine
-before this, it was possible to create it using the _turtle_ module.
+- Days 20 & 21 were by far the most enjoyable. Learning how to create a _snake game_ is AWESOME. I couldn't imagine it
+was possible to create it using the _turtle_ module before this. Going through the development of each little feature
+of the game while making each class work with another was fascinating.
