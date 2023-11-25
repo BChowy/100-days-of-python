@@ -31,6 +31,7 @@ class Snake:
         self.add_segment(self.snake_body[-1].position())
 
     def move(self):
+        # each segment of the body take the position of the segment before it
         for segment in range(len(self.snake_body) - 1, 0, -1):
             new_x = self.snake_body[segment - 1].xcor()
             new_y = self.snake_body[segment - 1].ycor()
