@@ -36,3 +36,7 @@ how to use _update()_ method.
 - Days 20 & 21 were by far the most enjoyable. Learning how to create a _snake game_ is AWESOME. I couldn't imagine it
 was possible to create it using the _turtle_ module before this. Going through the development of each little feature
 of the game while making each class work with another was fascinating.
+
+
+- On day 23, another day, I got to use modules and inheritance. It was fun to make the PONG game as much as the snake
+game. And I got to learn and understand how each part of the game works!
