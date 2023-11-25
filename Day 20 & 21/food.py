@@ -15,6 +15,6 @@ class Food(Turtle):
 
     def refresh(self):
         # avoid creating the circle on the edges of the 600x600 window
-        random_x = random.randint(-280, 280)
-        random_y = random.randint(-280, 280)
+        random_x = random.randint(-270, 270)
+        random_y = random.randint(-270, 270)
         self.goto(random_x, random_y)

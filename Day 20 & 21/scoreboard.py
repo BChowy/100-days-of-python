@@ -11,7 +11,7 @@ class Scoreboard(Turtle):
         self.color("white")
         self.hideturtle()
         self.penup()
-        self.goto(0, 270)
+        self.goto(0, 260)
         self.update_scoreboard()
 
     def game_over(self):
