@@ -1,54 +1,39 @@
-from turtle import Screen
-from paddle import Paddle
-from ball import Ball
-from scoreboard import Scoreboard
 import time
-
+from turtle import Screen
+from player import Player
+from car_manager import CarManager
+from scoreboard import Scoreboard
 
 screen = Screen()
-screen.setup(width=800, height=600)
-screen.bgcolor("black")
-screen.title("PONG game")
-# Turn off animation, which we must later manually update the screen
+screen.setup(width=600, height=600)
 screen.tracer(0)
 
-screen.listen()
-r_paddle = Paddle((350, 0))
-l_paddle = Paddle((-350, 0))
-ball = Ball()
+player = Player()
+car_manager = CarManager()
 scoreboard = Scoreboard()
 
-screen.onkey(r_paddle.move_down, "Down")
-screen.onkey(r_paddle.move_up, "Up")
-screen.onkey(l_paddle.move_down, "s")
-screen.onkey(l_paddle.move_up, "w")
+screen.listen()
+screen.onkeypress(player.move, "Up")
 
 game_is_on = True
-
 while game_is_on:
-    # Slowdown the animation/sleep between loops
-    time.sleep(ball.move_speed)
-    # update screen manually
+    time.sleep(0.1)
     screen.update()
-    ball.move()
 
-    # Detect collision with wall
-    if ball.ycor() > 280 or ball.ycor() < -280:
-        ball.bounce_y()
+    car_manager.create_cars()
+    car_manager.move_cars()
 
-    # Detect collision with paddle
-    # > 50 to make sure it's not just close to the center, but close to the paddle as a whole
-    if ball.distance(r_paddle) < 50 and ball.xcor() > 320 or ball.distance(l_paddle) < 50 and ball.xcor() < -320:
-        ball.bounce_x()
+    # Detect collision with cars
+    for car in car_manager.all_cars:
+        if (car.distance(player)) < 20:
+            scoreboard.game_over()
+            game_is_on = False
 
-    # Detect if r_paddle missed the ball
-    if ball.xcor() < -380:
-        ball.reset_position()
-        scoreboard.r_point()
+    # Detect successful crossing
+    if player.is_at_finish_line():
+        player.go_to_start()
+        car_manager.level_up()
+        scoreboard.increase_level()
 
-    # Detect if l_paddle missed the ball
-    if ball.xcor() > 380:
-        ball.reset_position()
-        scoreboard.l_point()
 
 screen.exitonclick()

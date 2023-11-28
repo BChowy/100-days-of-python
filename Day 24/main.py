@@ -1,39 +1,21 @@
-import time
-from turtle import Screen
-from player import Player
-from car_manager import CarManager
-from scoreboard import Scoreboard
+# for each name in invited_names.txt
+# Replace the [name] placeholder with the actual name.
+# Save the letters in the folder "ReadyToSend".
 
-screen = Screen()
-screen.setup(width=600, height=600)
-screen.tracer(0)
-
-player = Player()
-car_manager = CarManager()
-scoreboard = Scoreboard()
-
-screen.listen()
-screen.onkeypress(player.move, "Up")
-
-game_is_on = True
-while game_is_on:
-    time.sleep(0.1)
-    screen.update()
-
-    car_manager.create_cars()
-    car_manager.move_cars()
-
-    # Detect collision with cars
-    for car in car_manager.all_cars:
-        if (car.distance(player)) < 20:
-            scoreboard.game_over()
-            game_is_on = False
-
-    # Detect successful crossing
-    if player.is_at_finish_line():
-        player.go_to_start()
-        car_manager.level_up()
-        scoreboard.increase_level()
+# Hint1: This method will help you: https://www.w3schools.com/python/ref_file_readlines.asp
+# Hint2: This method will also help you: https://www.w3schools.com/python/ref_string_replace.asp
+# Hint3: THis method will help you: https://www.w3schools.com/python/ref_string_strip.asp
 
 
-screen.exitonclick()
+with open("./Input/Names/invited_names.txt") as names:
+    name_list = names.readlines()
+
+with open("./Input/Letters/starting_letter.txt") as invitation:
+    invitation_contents = invitation.read()
+
+for name in name_list:
+    stripped_name = name.strip()
+    new_letter = invitation_contents.replace("[name]", stripped_name)
+    with open(f"./Output/ReadyToSend/letter_for_{stripped_name}.txt", mode="w") as ready_letter:
+        ready_letter.write(new_letter)
+
