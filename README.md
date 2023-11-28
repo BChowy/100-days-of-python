@@ -30,6 +30,8 @@ how to use _update()_ method.
 
 **Day 21:** What is inheritance, and how to inherit another class.
 
+**Day 25:** What is "absolute" and "relative" paths. And how to open files for read/write using ```with open (file.txt) as file```.
+
 
 ### Reflection
 
