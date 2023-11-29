@@ -30,7 +30,9 @@ how to use _update()_ method.
 
 **Day 21:** What is inheritance, and how to inherit another class.
 
-**Day 25:** What is "absolute" and "relative" paths. And how to open files for read/write using ```with open (file.txt) as file```.
+**Day 24:** What is "absolute" and "relative" paths. And how to open files for read/write using ```with open (file.txt) as file```.
+
+**Day 25:** What is CSV data and how to use _pandas_ library to read it.
 
 
 ### Reflection
@@ -42,3 +44,6 @@ of the game while making each class work with another was fascinating.
 
 - On day 23, another day, I got to use modules and inheritance. It was fun to make the PONG game as much as the snake
 game. And I got to learn and understand how each part of the game works!
+
+- Learning _list comprehension_ on day 26 was mind-blowing. The fact that we could shorten multiple lines of into one
+line and still be readable makes me speechless.
