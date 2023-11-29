@@ -18,10 +18,11 @@ while len(guessed_states) < 50:
                               prompt="Guess a State name:").title()  # Convert the string to title case
 
     if answer == "Exit":
-        missed_states = []
-        for state in states:
-            if state not in guessed_states:
-                missed_states.append(state)
+        missed_states = [state for state in states if state not in guessed_states]
+        # missed_states = []
+        # for state in states:
+        #     if state not in guessed_states:
+        #         missed_states.append(state)
         new_data = pandas.DataFrame(missed_states)
         new_data.to_csv("states_to_learn.csv")
         break
