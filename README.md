@@ -45,5 +45,6 @@ of the game while making each class work with another was fascinating.
 - On day 23, another day, I got to use modules and inheritance. It was fun to make the PONG game as much as the snake
 game. And I got to learn and understand how each part of the game works!
 
-- Learning _list comprehension_ on day 26 was mind-blowing. The fact that we could shorten multiple lines of into one
+
+- Learning _list comprehension_ and _dictionary comprehension_ on day 26 was mind-blowing. The fact that we could shorten multiple lines of into one
 line and still be readable makes me speechless.
