@@ -34,6 +34,8 @@ how to use _update()_ method.
 
 **Day 25:** What is CSV data and how to use _pandas_ library to read it.
 
+**Day 27:** Tkinter module, and what are some useful components/widgets it has.
+
 
 ### Reflection
 
