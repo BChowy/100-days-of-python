@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from random import choice, randint, shuffle
 import pyperclip
+import json
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -27,17 +28,42 @@ def generate_password():
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
+def write_json(new_data):
+    try:
+        with open("data.json", "r") as file:
+            # Reading old data
+            data = json.load(file)
+    except FileNotFoundError:
+        with open("data.json", "w") as file:
+            json.dump(new_data, file, indent=4)
+    else:
+        # Updating it with new data
+        data.update(new_data)
+
+        with open("data.json", "w") as file:
+            # Write the updated data into file
+            json.dump(data, file, indent=4)
+    finally:
+        clear_fields()
+
+
 def save_password(website, email, password):
+    new_data = {
+        website: {
+            "email": email,
+            "password": password,
+        }
+    }
+
     if website == "" or email == "" or password == "":
         messagebox.showinfo(title="Oops!", message="Please make sure to fill out all the boxes.")
     else:
-        is_ok = messagebox.askokcancel(title=website, message=f"Theses are the details entered: \nEmail: {email}"
-                                                              f"\nPassword: {password} \nIs it ok to save?")
+        is_ok = messagebox.askokcancel(title="Check again", message=f"Is this correct?: \nWebsite: {website}"
+                                                                    f"\nEmail: {email} \nPassword: {password} \nIs it "
+                                                                    f"ok to save?")
 
         if is_ok:
-            with open("data.txt", "a") as file:
-                file.write(f"{website} | {email} | {password}\n")
-            clear_fields()
+            write_json(new_data)
 
 
 def clear_fields():
