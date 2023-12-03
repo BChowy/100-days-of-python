@@ -1,8 +1,27 @@
 from tkinter import *
 
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
+
+def save_password(website, email, password):
+    with open("data.txt", "a") as file:
+        file.write(f"{website} | {email} | {password}\n")
+
+
+def clear_fields():
+    website_entry.delete(0, END)
+    password_entry.delete(0, END)
+
+
+def get_fields():
+    website = website_entry.get()
+    email = email_entry.get()
+    password = password_entry.get()
+    save_password(website, email, password)
+    clear_fields()
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 
@@ -24,8 +43,9 @@ website_entry.grid(column=1, row=1, columnspan=2)
 username_label = Label(text="Email/Username:")
 username_label.grid(column=0, row=2)
 
-username_entry = Entry(width=40)
-username_entry.grid(column=1, row=2, columnspan=2)
+email_entry = Entry(width=40)
+email_entry.insert(0, "example@example.com")
+email_entry.grid(column=1, row=2, columnspan=2)
 
 password_label = Label(text="Password:")
 password_label.grid(column=0, row=3)
@@ -36,7 +56,7 @@ password_entry.grid(column=1, row=3)
 generate_btn = Button(text="Generate Password")
 generate_btn.grid(column=2, row=3)
 
-add_btn = Button(text="Add", width=35)
+add_btn = Button(text="Add", width=35, command=get_fields)
 add_btn.grid(column=1, row=4, columnspan=2)
 
 window.mainloop()
