@@ -78,6 +78,25 @@ def get_fields():
     save_password(website, email, password)
 
 
+# ---------------------------- FIND PASSWORD ------------------------------- #
+
+def find_password():
+    website = website_entry.get()
+    try:
+        with open("data.json", "r") as file:
+            # Reading old data
+            data = json.load(file)
+    except FileNotFoundError:
+        messagebox.showinfo(title="Oops!", message="The file is empty. No saved passwords.")
+    else:
+        if website in data:
+            email = data[website]["email"]
+            password = data[website]["password"]
+            messagebox.showinfo(title=website, message=f"Email: {email} \n Password: {password}")
+        else:
+            messagebox.showinfo(title="Oops!", message="No such a website saved!")
+
+
 # ---------------------------- UI SETUP ------------------------------- #
 
 window = Tk()
@@ -92,8 +111,11 @@ canvas.grid(column=1, row=0)
 website_label = Label(text="Website:")
 website_label.grid(column=0, row=1)
 
-website_entry = Entry(width=40)
-website_entry.grid(column=1, row=1, columnspan=2)
+website_entry = Entry(width=22)
+website_entry.grid(column=1, row=1)
+
+search_btn = Button(text="Search", command=find_password)
+search_btn.grid(column=2, row=1)
 
 username_label = Label(text="Email/Username:")
 username_label.grid(column=0, row=2)
