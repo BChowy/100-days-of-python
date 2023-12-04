@@ -7,19 +7,21 @@ BACKGROUND_COLOR = "#B1DDC6"
 FONT_NAME = "Ariel"
 
 current_card = {}
+words_dict = {}
 
-
-def get_data():
-    data = pandas.read_csv("./data/french_words.csv")
-    words_dict = data.to_dict(orient="records")
-    return words_dict
+try:
+    data_file = pandas.read_csv("./data/words_to_learn.csv")
+except FileNotFoundError:
+    original_data = pandas.read_csv("./data/french_words.csv")
+    words_dict = original_data.to_dict(orient="records")
+else:
+    words_dict = data_file.to_dict(orient="records")
 
 
 def next_card():
     global current_card, flip_timer
     window.after_cancel(flip_timer)
 
-    words_dict = get_data()
     current_card = random.choice(words_dict)
     canvas.itemconfig(card, image=card_front)
     canvas.itemconfig(language, text="French", fill="black")
@@ -32,6 +34,15 @@ def flip_card():
     canvas.itemconfig(card, image=card_back)
     canvas.itemconfig(language, text="English", fill="white")
     canvas.itemconfig(word, text=current_card["English"], fill="white")
+
+
+def is_known():
+    words_dict.remove(current_card)
+    data = pandas.DataFrame(words_dict)
+    # False so it doesn't add their record number everytime causing repeating in the file indexes
+    data.to_csv("./data/words_to_learn.csv", index=False)
+
+    next_card()
 
 
 window = Tk()
@@ -52,7 +63,7 @@ language = canvas.create_text(400, 150, text="", font=(FONT_NAME, 35, "italic"))
 word = canvas.create_text(400, 265, text="", font=(FONT_NAME, 60, "bold"))
 
 right_img = PhotoImage(file="./images/right.png")
-right_btn = Button(image=right_img, highlightthickness=0, command=next_card)
+right_btn = Button(image=right_img, highlightthickness=0, command=is_known)
 right_btn.grid(column=0, row=1)
 
 wrong_img = PhotoImage(file="./images/wrong.png")
