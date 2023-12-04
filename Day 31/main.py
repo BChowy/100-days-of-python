@@ -1,9 +1,24 @@
 from tkinter import *
-
+import pandas
+import random
 
 
 BACKGROUND_COLOR = "#B1DDC6"
 FONT_NAME = "Ariel"
+
+
+def get_data():
+    data = pandas.read_csv("./data/french_words.csv")
+    words_dict = data.to_dict(orient="records")
+    return words_dict
+
+
+def next_card():
+    words_dict = get_data()
+    current_card = random.choice(words_dict)
+    canvas.itemconfig(language, text="French")
+    canvas.itemconfig(word, text=current_card["French"])
+
 
 window = Tk()
 window.title("Flash Cards")
@@ -21,11 +36,12 @@ language = canvas.create_text(400, 150, text="", font=(FONT_NAME, 35, "italic"))
 word = canvas.create_text(400, 265, text="", font=(FONT_NAME, 60, "bold"))
 
 right_img = PhotoImage(file="./images/right.png")
-right_btn = Button(image=right_img, highlightthickness=0)
+right_btn = Button(image=right_img, highlightthickness=0, command=next_card)
 right_btn.grid(column=0, row=1)
 
 wrong_img = PhotoImage(file="./images/wrong.png")
-wrong_btn = Button(image=wrong_img, highlightthickness=0)
+wrong_btn = Button(image=wrong_img, highlightthickness=0, command=next_card)
 wrong_btn.grid(column=1, row=1)
 
+next_card()
 window.mainloop()
