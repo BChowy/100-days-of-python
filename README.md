@@ -36,6 +36,9 @@ how to use _update()_ method.
 
 **Day 27:** Tkinter module, and what are some useful components/widgets it has.
 
+**Day 32:** Using SMTP to send emails, and using _PYTHONANYWHERE_ to automate a birthday wisher.
+
+
 
 ### Reflection
 
