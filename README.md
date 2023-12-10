@@ -38,9 +38,10 @@ how to use _update()_ method.
 
 **Day 32:** Using SMTP to send emails, and using _PYTHONANYWHERE_ to automate a birthday wisher.
 
+**Day 33:** Used API url to get data and use it in code.
 
 
-### Reflection
+### Reflections
 
 - Days 20 & 21 were by far the most enjoyable. Learning how to create a _snake game_ is AWESOME. I couldn't imagine it
 was possible to create it using the _turtle_ module before this. Going through the development of each little feature
@@ -51,5 +52,9 @@ of the game while making each class work with another was fascinating.
 game. And I got to learn and understand how each part of the game works!
 
 
-- Learning _list comprehension_ and _dictionary comprehension_ on day 26 was mind-blowing. The fact that we could shorten multiple lines of into one
-line and still be readable makes me speechless.
+- Learning _list comprehension_ and _dictionary comprehension_ on day 26 was mind-blowing. The fact that we could
+shorten multiple lines of into one line and still be readable.
+
+
+- Unlike day 17 where we downloaded a json file to use, day 33 was to get the data from the URL in real time. I will
+definitely search for open API to create fun widgets.
