@@ -1,8 +1,15 @@
 import requests
+from twilio.rest import Client
 
 # the plan has changed, and the api doesn't have a free option anymore.
 OWM_endpoint = "https://api.openweathermap.org/data/3.0/onecall"
 api_key = "0b244508a847476787d7709bb82d0169"
+account_sid = "twilio account id"
+auth_token = "twilio_auth_token"
+
+from_number = "twilio acc phone number"
+to_number = "receiver phone number"  # it should be added to the twilio account
+
 parameters = {
     "lat": 44.34,
     "lon": 10.99,
@@ -23,4 +30,8 @@ for hour_data in weather_slice:
         will_rain = True
 
 if will_rain:
-    print("It's gonna rain, bring an ☔")
+    client = Client(account_sid, auth_token)
+    message = client.messages.create(body="It's gonna rain, bring an ☔",
+                                     from_=from_number, to=to_number)
+
+    print(message.status)
