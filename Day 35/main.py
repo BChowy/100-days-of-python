@@ -6,9 +6,9 @@ import os
 
 # the plan has changed, and the api doesn't have a free option anymore.
 OWM_endpoint = "https://api.openweathermap.org/data/3.0/onecall"
-api_key = "0b244508a847476787d7709bb82d0169"
+api_key = os.environ.get("OWM_API_KEY")
 account_sid = "twilio account id"
-auth_token = "twilio auth token"
+auth_token = os.environ.get("TWILIO_AUTH_TOKEN")
 
 from_number = "twilio acc phone number"
 to_number = "receiver phone number"  # it should be added to the twilio account
