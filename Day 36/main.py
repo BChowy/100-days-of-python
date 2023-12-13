@@ -20,6 +20,11 @@ parameters = {
     "apikey": ALPHA_ADVANTAGE_KEY,
 }
 
+def is_five_percent_difference(f_value, s_value):
+    difference = max(f_value, s_value) - min(f_value, s_value)
+    median = (f_value + s_value) / 2
+    return (difference / median) * 100 >= 5
+
 response = requests.get(ALPHA_ADVANTAGE_API, params=parameters)
 response.raise_for_status()
 yesterday_close = response.json()["Time Series (Daily)"][yesterday_date]["4. close"]
