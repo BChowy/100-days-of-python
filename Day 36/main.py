@@ -1,5 +1,23 @@
+import os
+import requests
+
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
+
+
+ALPHA_ADVANTAGE_KEY = os.environ.get("ALPHA_ADVANTAGE_KEY")
+
+ALPHA_ADVANTAGE_API = "https://www.alphavantage.co/query?"
+parameters = {
+    "function": "TIME_SERIES_DAILY",
+    "symbol": STOCK,
+    "apikey": ALPHA_ADVANTAGE_KEY,
+}
+
+response = requests.get(ALPHA_ADVANTAGE_API, params=parameters)
+response.raise_for_status()
+
+
 
 ## STEP 1: Use https://newsapi.org
 # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
@@ -11,7 +29,7 @@ COMPANY_NAME = "Tesla Inc"
 # Send a seperate message with the percentage change and each article's title and description to your phone number. 
 
 
-#Optional: Format the SMS message like this: 
+# Optional: Format the SMS message like this:
 """
 TSLA: 🔺2%
 Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
@@ -21,4 +39,3 @@ or
 Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
 Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height of the coronavirus market crash.
 """
-
