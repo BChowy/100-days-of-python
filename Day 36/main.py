@@ -22,4 +22,21 @@ parameters = {
 
 def is_five_percent_difference(f_value, s_value):
     difference = abs(float(f_value) - float(s_value))
-    return (difference/float(max(f_value, s_value)))*100 >= 5
+    return (difference / float(max(f_value, s_value))) * 100 >= 5
+
+
+if is_five_percent_difference(yesterday_close_price, before_yesterday_close_price):
+    # connect to the news api and get three articles
+    NEWS_ENDPOINT = "https://newsapi.org/v2/everything?"
+    news_params = {
+        "qInTitle": COMPANY_NAME,
+        "language": "en",
+        "sortBy": "popularity",
+        "apiKey": NEWS_API_KEY,
+    }
+
+    response = requests.get(NEWS_ENDPOINT, params=news_params)
+    response.raise_for_status()
+    # Need only top three articles
+    articles = response.json()["articles"][:3]
+    print(articles)
