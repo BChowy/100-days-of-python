@@ -64,7 +64,7 @@ if diff_percentage >= 5:
     articles = response.json()["articles"][:3]
 
     formatted_articles = [
-        f"{STOCK}: {up_down}{diff_percentage}%\nHeadline: {article['title']}. \nBrief: {article['description']}" for
+        f"{STOCK}: {up_down}{round(diff_percentage)}%\nHeadline: {article['title']}. \nBrief: {article['description']}" for
         article in articles]
     print(formatted_articles)
     # Send each article as a separate message via Twilio.
