@@ -2,32 +2,55 @@ import os
 import requests
 from datetime import datetime
 from datetime import timedelta
+from twilio.rest import Client
+
 
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
 
+STOCK_ENDPOINT = "https://www.alphavantage.co/query?"
+NEWS_ENDPOINT = "https://newsapi.org/v2/everything?"
+
+TWILIO_NUMBER = "virtual twilio number"
+VERIFIED_NUMBER = "phone number verified with Twilio"
+
+# Both works
+STOCK_API_KEY = os.environ.get("ALPHA_ADVANTAGE_KEY")
+NEWS_API_KEY = os.getenv("NEWS_API_KEY")
+TWILIO_SID = "TWILIO ACCOUNT SID"
+TWILIO_AUTH_TOKEN = "TWILIO AUTH TOKEN"
+
+# Get dates
 today = datetime.today().date()
 yesterday_date = (today - timedelta(days=1)).strftime('%Y-%m-%d')
 before_yesterday_date = (today - timedelta(days=2)).strftime('%Y-%m-%d')
 
-ALPHA_ADVANTAGE_KEY = os.environ.get("ALPHA_ADVANTAGE_KEY")
-NEWS_API_KEY = "712d241f07924bf0866e7174313710a8"
-
-ALPHA_ADVANTAGE_API = "https://www.alphavantage.co/query?"
-parameters = {
+# Connect to the stock endpoint
+stock_params = {
     "function": "TIME_SERIES_DAILY",
     "symbol": STOCK,
-    "apikey": ALPHA_ADVANTAGE_KEY,
+    "apikey": STOCK_API_KEY,
 }
 
-def is_five_percent_difference(f_value, s_value):
-    difference = abs(float(f_value) - float(s_value))
-    return (difference / float(max(f_value, s_value))) * 100 >= 5
+# Get yesterday and the day before it closing prices
+response = requests.get(STOCK_ENDPOINT, params=stock_params)
+response.raise_for_status()
+yesterday_close_price = response.json()["Time Series (Daily)"][yesterday_date]["4. close"]
+before_yesterday_close_price = response.json()["Time Series (Daily)"][before_yesterday_date]["4. close"]
 
 
-if is_five_percent_difference(yesterday_close_price, before_yesterday_close_price):
+# Find the positive difference between prices
+difference = float(yesterday_close_price) - float(before_yesterday_close_price)
+diff_percentage = (abs(difference) / float(max(yesterday_close_price, before_yesterday_close_price))) * 100
+
+up_down = None
+if difference > 0:
+    up_down = "🔺"
+else:
+    up_down = "🔻"
+
+if diff_percentage >= 5:
     # connect to the news api and get three articles
-    NEWS_ENDPOINT = "https://newsapi.org/v2/everything?"
     news_params = {
         "qInTitle": COMPANY_NAME,
         "language": "en",
@@ -39,4 +62,17 @@ if is_five_percent_difference(yesterday_close_price, before_yesterday_close_pric
     response.raise_for_status()
     # Need only top three articles
     articles = response.json()["articles"][:3]
-    print(articles)
+
+    formatted_articles = [
+        f"{STOCK}: {up_down}{diff_percentage}%\nHeadline: {article['title']}. \nBrief: {article['description']}" for
+        article in articles]
+    print(formatted_articles)
+    # Send each article as a separate message via Twilio.
+    client = Client(TWILIO_SID, TWILIO_AUTH_TOKEN)
+
+    for article in formatted_articles:
+        message = client.messages.create(
+            body=article,
+            from_=TWILIO_NUMBER,
+            to=VERIFIED_NUMBER
+        )
