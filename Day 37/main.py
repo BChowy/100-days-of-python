@@ -51,3 +51,7 @@ update_pixel_data = {
 # response = requests.put(url=update_pixel_endpoint, json=update_pixel_data, headers=headers)
 # print(response.text)
 
+delete_pixel_endpoint = f"{post_pixel_endpoint}/{today_date}"
+response = requests.delete(url=delete_pixel_endpoint, headers=headers)
+
+print(response.text)
