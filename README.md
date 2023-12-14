@@ -40,6 +40,9 @@ how to use _update()_ method.
 
 **Day 33:** Used API url to get data and use it in code.
 
+**Day 34:** Learned how to use POST, PUT and DELETE request. learned about _Pixela_ API.
+
+
 
 ### Reflections
 
@@ -58,3 +61,6 @@ shorten multiple lines of into one line and still be readable.
 
 - Unlike day 17 where we downloaded a json file to use, day 33 was to get the data from the URL in real time. I will
 definitely search for open API to create fun widgets.
+
+
+- Learning how to use requests and _pixela_ API definitely gave me idea on how to use one to create a small project.
