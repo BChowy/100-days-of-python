@@ -40,5 +40,14 @@ pixel_data = {
     "quantity": "5",
 }
 
-response = requests.post(url=post_pixel_endpoint, json=pixel_data, headers=headers)
-print(response.text)
+# response = requests.post(url=post_pixel_endpoint, json=pixel_data, headers=headers)
+# print(response.text)
+
+update_pixel_endpoint = f"{post_pixel_endpoint}/{today_date}"
+update_pixel_data = {
+    "quantity": "9",
+}
+
+# response = requests.put(url=update_pixel_endpoint, json=update_pixel_data, headers=headers)
+# print(response.text)
+
