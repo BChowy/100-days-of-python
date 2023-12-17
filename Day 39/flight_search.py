@@ -3,7 +3,7 @@ from flight_data import FlightData
 from datetime import datetime
 
 TEQUILA_ENDPOINT = "https://api.tequila.kiwi.com"
-TEQUILA_KEY = "wiufCFDZqKp5UQVuGFEssaFr9fAMfSsW"
+TEQUILA_KEY = "YOUR API KEY"
 
 
 class FlightSearch:
@@ -55,6 +55,3 @@ class FlightSearch:
 
 
 data2 = FlightSearch()
-# print(data.check_flights("LON", "PAR", datetime.now().date(), datetime.now().date()))
-# # print(data.get_city_code("Paris"))
-# print(data2.check_flights("LON", "PAR", datetime.now().date(), datetime.now().date()))
