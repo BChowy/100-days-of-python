@@ -5,6 +5,7 @@ SHEETY_ENDPOINT = "https://api.sheety.co/bce0e9cffafb92f8c306cf27c93f3821/flight
 
 class DataManager:
     def __init__(self):
+        self.customer_data = None
         self.destination_data = {}
 
     def get_destination_data(self):
@@ -24,3 +25,10 @@ class DataManager:
             }
             response = requests.put(url=f"{SHEETY_ENDPOINT}/{city['id']}", json=new_data)
             print(response.text)
+
+    def get_customer_emails(self):
+        customers_endpoint = SHEETY_ENDPOINT
+        response = requests.get(customers_endpoint)
+        data = response.json()
+        self.customer_data = data["users"]
+        return self.customer_data
