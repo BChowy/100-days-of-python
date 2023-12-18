@@ -37,21 +37,21 @@ class FlightSearch:
         response = requests.get(url=f"{TEQUILA_ENDPOINT}/v2/search", headers=self.headers, params=parameters)
         try:
             data = response.json()["data"][0]
+            print(f"{destination_city_code} {data['price']}")
         except IndexError:
             print(f"No flights found for {destination_city_code}.")
             return None
-
-        flight_data = FlightData(
-            price=data["price"],
-            departure_city=data["route"][0]["cityFrom"],
-            departure_airport=data["route"][0]["flyFrom"],
-            destination_city=data["route"][0]["cityTo"],
-            destination_airport=data["route"][0]["flyTo"],
-            leave_date=data["route"][0]["local_departure"].split("T")[0],
-            return_date=data["route"][1]["local_departure"].split("T")[0]
-        )
-        print(f"{flight_data.destination_city}: £{flight_data.price}")
-        return flight_data
+        else:
+            flight_data = FlightData(
+                price=data["price"],
+                departure_city=data["route"][0]["cityFrom"],
+                departure_airport=data["route"][0]["flyFrom"],
+                destination_city=data["route"][0]["cityTo"],
+                destination_airport=data["route"][0]["flyTo"],
+                leave_date=data["route"][0]["local_departure"].split("T")[0],
+                return_date=data["route"][1]["local_departure"].split("T")[0]
+            )
+            return flight_data
 
 
 data2 = FlightSearch()
