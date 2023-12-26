@@ -32,3 +32,14 @@ sp = spotipy.Spotify(
     )
 )
 user_id = sp.current_user()["id"]
+
+song_uris = []
+year = date.split("-")[0]
+for song in songs_list:
+    result = sp.search(q=f"track:{song} year:{year}", type="track")
+    # print(result)
+    try:
+        uri = result["tracks"]["items"][0]["uri"]
+        song_uris.append(uri)
+    except IndexError:
+        print(f"{song} doesn't exist in Spotify. Skipped.")
