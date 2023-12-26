@@ -42,6 +42,7 @@ how to use _update()_ method.
 
 **Day 34:** Learned how to use POST, PUT and DELETE request. learned about _Pixela_ API.
 
+**Day 45:** What is _Beautiful Soup_ Library, and how to use it for web scraping.
 
 
 ### Reflections
@@ -66,5 +67,9 @@ definitely search for open API to create fun widgets.
 - Learning how to use requests and _pixela_ API definitely gave me idea on how to use one to create a small project.
 
 
-- Working on Day 39 & 40 project was a bit discourging since I got denied the access to the Tequila search API. I had
+- Working on Day 39 & 40 project was a bit discouraging since I got denied the access to the Tequila search API. I had
 to read through the code solution and understand how it worked instead of doing it myself, which felt purposeless.
+
+
+- On day 45, we learned about **Web Scraping**. I have heard about it before but never thought it was going to be like
+this, and an easy one on top of that.
