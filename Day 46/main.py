@@ -8,8 +8,7 @@ CLIENT_SECRET = "SPOTIFY CLIENT SECRET"
 
 url = "https://www.billboard.com/charts/hot-100/"
 
-# date = input("Enter a date in the format of YYY-MM-DD ")
-date = "2010-07-17"
+date = input("Enter a date in the format of YYYY-MM-DD:: ")
 
 date_url = f"{url}{date}"
 
@@ -43,3 +42,6 @@ for song in songs_list:
         song_uris.append(uri)
     except IndexError:
         print(f"{song} doesn't exist in Spotify. Skipped.")
+
+playlist = sp.user_playlist_create(user_id, f"date Billboard 100", public=False)
+sp.playlist_add_items(playlist_id=playlist["id"], items=song_uris)
